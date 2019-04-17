@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="375pt"
+        android:layout_height="375pt"
+        android:background="@color/colorAccent"
+        android:text="android"
+        />
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="338pt"
+        android:layout_height="338pt"
+        android:background="@color/colorAccent"
+        android:textSize="26pt"
+        android:text="miumiu/缪缪女士香氛香水女花香调 浓香型"/>
+</LinearLayout>
