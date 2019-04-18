@@ -3,6 +3,7 @@ package com.test.uiadapter;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -16,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toast.makeText(MainActivity.this,"toast适配测试",Toast.LENGTH_SHORT).show();
         tv=findViewById(R.id.tv);
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -25,11 +25,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     @Override
     public Resources getResources() {
-        float fontScale = super.getResources().getConfiguration().fontScale;
-        Log.i("===============","======2========="+fontScale);
-        return UIAdapter.adaptWidth(super.getResources(),750);
+        return UIAdapter.adaptWidth(super.getResources(),375);
+//        return super.getResources();
     }
 }

@@ -14,7 +14,7 @@ import java.lang.reflect.Field;
 public class UIAdapter {
 
     private static boolean isInitMiUi = false;
-    private static Field tempMetrics;
+    private static DisplayMetrics tempDisplayMetrics;
 
     public static Resources adaptWidth(Resources resources,int uiWidth){
         return adaptWidth(null,resources,uiWidth);
@@ -78,19 +78,16 @@ public class UIAdapter {
         return (int) (pxValue * 72 / metrics.xdpi);
     }
 
-    public void a(Resources res){
-
-    }
 
     public static Resources closeUIAdapter(Resources resources) {
         return closeUIAdapter(null,resources);
     }
     public static Resources closeUIAdapter(Context context,Resources resources) {
         DisplayMetrics dm = getDisplayMetrics(resources);
-        float newXdpi = dm.density* dm.DENSITY_DEFAULT;
-        dm.xdpi=newXdpi;
+        float xdpi = Resources.getSystem().getDisplayMetrics().xdpi;
+        dm.xdpi=xdpi;
         if(context!=null){
-            context.getApplicationContext().getResources().getDisplayMetrics().xdpi=newXdpi;
+            context.getApplicationContext().getResources().getDisplayMetrics().xdpi=xdpi;
         }
         return resources;
     }
@@ -105,27 +102,19 @@ public class UIAdapter {
 
     private static DisplayMetrics getMiUiTmpMetrics(Resources resources) {
         if (!isInitMiUi) {
-            DisplayMetrics ret = null;
             String simpleName = resources.getClass().getSimpleName();
             if ("MiuiResources".equals(simpleName) || "XResources".equals(simpleName)) {
                 try {
-                    tempMetrics = Resources.class.getDeclaredField("tempMetrics");
+                    Field tempMetrics = Resources.class.getDeclaredField("tempMetrics");
                     tempMetrics.setAccessible(true);
-                    ret = (DisplayMetrics) tempMetrics.get(resources);
+                    tempDisplayMetrics = (DisplayMetrics) tempMetrics.get(resources);
                 } catch (Exception e) {
+                    tempDisplayMetrics=null;
                     Log.e("AdaptScreenUtils", "no field of tempMetrics in resources.");
                 }
             }
             isInitMiUi = true;
-            return ret;
         }
-        if (tempMetrics == null){
-            return null;
-        }
-        try {
-            return (DisplayMetrics) tempMetrics.get(resources);
-        } catch (Exception e) {
-            return null;
-        }
+        return tempDisplayMetrics;
     }
 }

@@ -9,16 +9,25 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="375pt"
-        android:layout_height="375pt"
+        android:id="@+id/tv"
+        android:layout_width="187.5pt"
+        android:layout_height="187.5pt"
         android:background="@color/colorAccent"
         android:text="android"
         />
     <TextView
-        android:id="@+id/tv"
-        android:layout_width="338pt"
-        android:layout_height="338pt"
+        android:layout_width="187.5pt"
+        android:layout_height="187.5pt"
         android:background="@color/colorAccent"
-        android:textSize="26pt"
-        android:text="miumiu/缪缪女士香氛香水女花香调 浓香型"/>
+        android:textSize="13pt"
+        android:text="miumiu/缪缪女士香氛香水女花香调 浓香型"
+        android:layout_marginLeft="187.5pt"
+        />
+    <TextView
+        android:layout_width="187.5dp"
+        android:layout_height="187.5dp"
+        android:background="@color/colorAccent"
+        android:textSize="13sp"
+        android:text="miumiu/缪缪女士香氛香水女花香调 浓香型"
+        />
 </LinearLayout>
